@@ -1,0 +1,53 @@
+body{
+    background-color:#cccccc;
+}
+
+h1{
+    color:#000000;
+    text-align: center;
+    padding: 4pt;
+    font-size: 25pt;
+    margin-top: 0%;
+    margin-left: 10%;
+    margin-right:10%;
+    margin-bottom:10pt;
+    font-family: 'Courier New', Courier, monospace;
+	font-weight:bold;
+}
+
+button{
+	font-size:15pt;
+}
+
+input{
+	font-size:15pt;
+}
+
+table{
+	border: 1px solid black;
+	width:100%;
+}
+
+th{
+	background-color:  #ff9900;
+	border: 1px solid black;
+	font-size:20pt;
+	width:50pt;  
+}
+
+tr {
+	border: 1px solid black;
+}
+
+td{
+	background-color:  #ffff99;
+	border: 1px solid black;
+	text-align: center;
+	font-size: 15pt;
+	font-weight:bold;
+	vertical-align: top;
+	padding:10pt;
+	width:25pt;
+	height:30pt;
+
+}

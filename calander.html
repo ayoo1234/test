@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+        <title>Calander</title>
+        <link rel="stylesheet" type="text/css" href="calander.css" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
+		<script src="calander.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<h1 id="currMonthYear">October 2019 </h1>
+	<button id="prevMonth">  prev </button>
+	<button id ="nextMonth"> next </button>
+	
+	<div>
+		<table id = "calander">
+		<thead>
+			<tr>
+				<th>Sunday</th>
+				<th>Monday</th>
+				<th>Tuesday</th>
+				<th>Wednesday</th>
+				<th>Thursday</th>
+				<th>Friday</th>
+				<th>Saturday</th>
+			</tr>
+		</thead>	
+		
+		<tbody>
+			<tr>
+				<td id="0"></td>
+				<td id="1"></td>
+				<td id="2"></td>
+				<td id="3"></td>
+				<td id="4"></td>
+				<td id="5"></td>
+				<td id="6"></td>
+
+			</tr>
+
+			<tr>
+				<td id="7"></td>
+				<td id="8"></td>
+				<td id="9"></td>
+				<td id="10"></td>
+				<td id="11"></td>
+				<td id="12"></td>
+				<td id="13"></td>
+			</tr>		
+			
+			<tr>
+				<td id="14"></td>
+				<td id="15"></td>
+				<td id="16"></td>
+				<td id="17"></td>
+				<td id="18"></td>
+				<td id="19"></td>
+				<td id="20"></td>
+			</tr>		
+			
+			<tr>
+				<td id="21"></td>
+				<td id="22"></td>
+				<td id="23"></td>
+				<td id="24"></td>
+				<td id="25"></td>
+				<td id="26"></td>
+				<td id="27"></td>
+			</tr>
+
+			<tr>
+				<td id="28"></td>
+				<td id="29"></td>
+				<td id="30"></td>
+				<td id="31"></td>
+				<td id="32"></td>
+				<td id="33"></td>
+				<td id="34"></td>
+			</tr>			
+
+			<tr>
+				<td id="35"></td>
+				<td id="36"></td>
+				<td id="37"></td>
+				<td id="38"></td>
+				<td id="39"></td>
+				<td id="40"></td>
+				<td id="41"></td>
+			</tr>
+			
+		</tbody>
+			
+		</table>
+	</div><br>
+	
+	<input placeholder="Username"  name="usernameinput" id="username" /><br>
+	<input placeholder="Password" type = "password" name="passwordinput" id="password" /><br>
+	<button id="login"> Login </button>
+	
+	<script>
+		let currentMonth = new Month(2019, 9); // October 2019
+		updateCalendar();
+		const months=["Janurary", "February","March","April","May","June","July","August","September","October","November","December"];
+
+		// Change the month when the "next" button is pressed
+		document.getElementById("nextMonth").addEventListener("click", function(event){
+			currentMonth = currentMonth.nextMonth(); // Previous month would be currentMonth.prevMonth()
+			refreshCalendar();
+			updateCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
+			document.getElementById("currMonthYear").innerText=months[currentMonth.month]+ " "+currentMonth.year;
+			//alert("The new month is "+currentMonth.month+" "+currentMonth.year);
+		}, false);
+		
+		// Change the month when the "prev" button is pressed
+		document.getElementById("prevMonth").addEventListener("click", function(event){
+			currentMonth = currentMonth.prevMonth(); // Previous month would be currentMonth.prevMonth()
+			refreshCalendar();
+			updateCalendar(); // Whenever the month is updated, we'll need to re-render the calendar in HTML
+			document.getElementById("currMonthYear").innerHTML=months[currentMonth.month]+ " "+currentMonth.year;
+			
+			//alert("The new month is "+currentMonth.month+" "+currentMonth.year);
+		}, false);		
+		
+		function refreshCalendar()
+		{
+			for (let i = 0;  i<42; i++)
+			{
+				document.getElementById(i.toString()).innerText=null;
+			}
+		}
+
+		// This updateCalendar() function only alerts the dates in the currently specified month.  You need to write
+		// it to modify the DOM (optionally using jQuery) to display the days and weeks in the current month.
+		function updateCalendar(){
+			let weeks = currentMonth.getWeeks();
+			let dayArray=[];
+			let arrayIndex=0;
+			let previous=0;
+			
+			for(var w in weeks){
+				let days = weeks[w].getDates();
+				// days contains normal JavaScript Date objects.
+				
+				//alert("Week starting on "+days[0]);
+				
+				for(var d in days){
+					let str= days[d].toString();
+					let strSplit=str.split(" ");
+					
+					console.log(parseInt(strSplit[2]));
+					
+					if (parseInt(strSplit[2])-1 == previous)
+					{
+						document.getElementById(arrayIndex.toString()).innerText=parseInt(strSplit[2]);
+						previous++;
+					}
+					arrayIndex++;
+					// You can see console.log() output in your JavaScript debugging tool, like Firebug,
+					// WebWit Inspector, or Dragonfly.
+				}
+			}
+		}z
+	</script>
+	
+
+	
+</body>
+</html>
